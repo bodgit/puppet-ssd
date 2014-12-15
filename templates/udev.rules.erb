@@ -1,0 +1,2 @@
+# set <%= @scheduler %> scheduler for non-rotating disks
+ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="<%= @scheduler %>"
