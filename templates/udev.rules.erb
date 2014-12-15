@@ -1,2 +1,4 @@
 # set <%= @scheduler %> scheduler for non-rotating disks
-ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="<%= @scheduler %>"
+# set readahead to <%= @readahead %> KB
+# don't use for entropy gathering
+ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="<%= @scheduler %>", ATTR{queue/read_ahead_kb}="<%= @readahead %>", ATTR{queue/add_random}="0"
